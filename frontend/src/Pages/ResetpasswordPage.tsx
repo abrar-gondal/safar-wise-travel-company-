@@ -14,14 +14,10 @@ export default function ResetPasswordPage() {
   const [show, setShow] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
-  // Read token and email from URL — supports both formats
   useEffect(() => {
-    // Try window.location.search first
     let params = new URLSearchParams(window.location.search);
     let t = params.get('token');
     let e = params.get('email');
-
-    // If not found, try hash format /?token=...#reset-password
     if (!t || !e) {
       const hashIndex = window.location.href.indexOf('?');
       if (hashIndex !== -1) {
@@ -68,7 +64,6 @@ export default function ResetPasswordPage() {
       setLoading(false);
     }
   };
-  // Password strength
   const getStrength = (p: string) => {
     if (p.length === 0) return { label: '', color: 'transparent', width: '0%' };
     if (p.length < 6)   return { label: 'Too short', color: '#C0392B', width: '25%' };
@@ -77,10 +72,8 @@ export default function ResetPasswordPage() {
     return { label: 'Strong', color: '#27AE60', width: '100%' };
   };
   const strength = getStrength(password);
-
   return (
     <div className="auth-page">
-      {/* LEFT PANEL */}
       <div className="auth-left">
         <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', padding: '2rem' }}>
           <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🔑</div>
@@ -99,11 +92,9 @@ export default function ResetPasswordPage() {
           </div>
         </div>
       </div>
-      {/* RIGHT PANEL */}
       <div className="auth-right">
         <div className="auth-box">
           <div className="logo" style={{ marginBottom: '2rem' }}>
-            {/* <span className="logo-icon"></span> */}
             <span className="logo-text">Safar<span>Wise</span></span>
           </div>
 
@@ -111,15 +102,11 @@ export default function ResetPasswordPage() {
           <p style={{ color: 'var(--earth-light)', fontSize: '0.88rem', marginBottom: '1.5rem' }}>
             Resetting password for <strong>{email}</strong>
           </p>
-
-          {/* ERROR */}
           {error && (
             <div style={{ background: 'rgba(192,57,43,0.08)', border: '1px solid rgba(192,57,43,0.2)', borderRadius: 8, padding: '0.75rem 1rem', color: '#C0392B', fontSize: '0.82rem', marginBottom: '1rem' }}>
               ⚠️ {error}
             </div>
           )}
-
-          {/* SUCCESS */}
           {success && (
             <div style={{ background: 'rgba(39,174,96,0.08)', border: '1px solid rgba(39,174,96,0.2)', borderRadius: 8, padding: '0.75rem 1rem', color: '#27AE60', fontSize: '0.82rem', marginBottom: '1rem' }}>
               {success} Redirecting to login...
@@ -127,7 +114,6 @@ export default function ResetPasswordPage() {
           )}
           {!success && (
             <>
-              {/* NEW PASSWORD */}
               <div className="form-group">
                 <label className="form-label">New Password *</label>
                 <div style={{ position: 'relative' }}>
@@ -146,7 +132,6 @@ export default function ResetPasswordPage() {
                     {show ? '🙈' : '👁️'}
                   </button>
                 </div>
-                {/* Strength bar */}
                 {password.length > 0 && (
                   <div style={{ marginTop: '0.5rem' }}>
                     <div style={{ height: 4, background: 'var(--sand)', borderRadius: 4, overflow: 'hidden' }}>
@@ -158,7 +143,6 @@ export default function ResetPasswordPage() {
                   </div>
                 )}
               </div>
-              {/* CONFIRM PASSWORD */}
               <div className="form-group">
                 <label className="form-label">Confirm Password *</label>
                 <div style={{ position: 'relative' }}>
@@ -178,7 +162,6 @@ export default function ResetPasswordPage() {
                     {showConfirm ? '🙈' : '👁️'}
                   </button>
                 </div>
-                {/* Match indicator */}
                 {confirm.length > 0 && (
                   <div style={{ fontSize: '0.72rem', marginTop: '0.25rem', color: password === confirm ? '#27AE60' : '#C0392B' }}>
                     {password === confirm ? '✅ Passwords match' : '❌ Passwords do not match'}

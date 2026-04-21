@@ -11,7 +11,6 @@ export default function BlogDetailPage() {
   }
   return (
     <div style={{ paddingTop: 68 }}>
-      {/* HERO */}
       <div style={{ position: 'relative', height: 420, overflow: 'hidden' }}>
         <img src={blog.image} alt={blog.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(30,16,8,0.85) 0%, rgba(30,16,8,0.3) 60%, transparent 100%)' }} />
@@ -29,10 +28,8 @@ export default function BlogDetailPage() {
           </div>
         </div>
       </div>
-      {/* CONTENT */}
       <div style={{ maxWidth: 800, margin: '0 auto', padding: '3rem 2rem 5rem', display: 'grid', gridTemplateColumns: '1fr 260px', gap: '3rem', alignItems: 'start' }}>
         <article>
-          {/* AUTHOR */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1.25rem', background: 'var(--sand)', borderRadius: 12, marginBottom: '2rem' }}>
             <div style={{ width: 48, height: 48, borderRadius: '50%', background: 'var(--earth)', color: 'var(--amber)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Cormorant Garamond',serif", fontSize: '1.1rem', fontWeight: 600, flexShrink: 0 }}>
               {blog.author.split(' ').map((n: string) => n[0]).join('')}
@@ -42,11 +39,9 @@ export default function BlogDetailPage() {
               <div style={{ fontSize: '0.75rem', color: 'var(--earth-light)' }}>{blog.authorRole}</div>
             </div>
           </div>
-          {/* INTRO */}
           <p style={{ fontSize: '1.05rem', color: 'var(--earth)', lineHeight: 1.9, marginBottom: '2rem', fontStyle: 'italic', borderLeft: '3px solid var(--amber)', paddingLeft: '1.25rem' }}>
             {blog.intro}
           </p>
-          {/* SECTIONS */}
           {blog.sections.map((s: { heading: string; content: string }, i: number) => (
             <div key={i} style={{ marginBottom: '2rem' }}>
               <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '1.5rem', color: 'var(--earth)', marginBottom: '0.75rem' }}>
@@ -55,7 +50,6 @@ export default function BlogDetailPage() {
               <p style={{ fontSize: '0.92rem', color: 'var(--earth-light)', lineHeight: 1.85 }}>{s.content}</p>
             </div>
           ))}
-          {/* TIPS */}
           <div style={{ background: 'var(--sand)', borderRadius: 14, padding: '1.75rem', marginTop: '2rem' }}>
             <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '1.35rem', color: 'var(--earth)', marginBottom: '1rem' }}>
               Key Tips
@@ -69,7 +63,6 @@ export default function BlogDetailPage() {
               ))}
             </div>
           </div>
-          {/* TAGS */}
           <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '2rem' }}>
             {blog.tags.map((t: string) => (
               <span key={t} style={{ background: 'rgba(200,134,42,0.1)', color: 'var(--amber)', fontSize: '0.75rem', padding: '0.3rem 0.85rem', borderRadius: 50, fontWeight: 500 }}>
@@ -78,7 +71,6 @@ export default function BlogDetailPage() {
             ))}
           </div>
         </article>
-        {/* SIDEBAR */}
         <div style={{ position: 'sticky', top: 88, display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
           <div style={{ background: 'white', borderRadius: 14, padding: '1.5rem', boxShadow: '0 4px 20px var(--shadow)', border: '1px solid rgba(200,134,42,0.1)' }}>
             <h4 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '1.15rem', marginBottom: '1rem', color: 'var(--earth)' }}>

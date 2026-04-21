@@ -6,17 +6,14 @@ import { useApp } from '../AppContext';
 import { SAFARWISE_PHONE } from '../data/constants';
 
 type Tab = 'itinerary' | 'includes' | 'reviews';
-
 const MOCK_REVIEWS = [
-  { name: 'Abrar Aziz',    initials: 'AA', color: '#C8862A', rating: 5, text: 'We tested this package during development and the itinerary is well structured. Every detail from accommodation to transport has been carefully planned.', date: 'Mar 2025' },
-  { name: 'Atif Gujjar',   initials: 'AG', color: '#3D2B1F', rating: 5, text: 'Coordinating the research for this package gave us a real appreciation for how much Pakistan has to offer. The route and duration are well balanced.', date: 'Mar 2025' },
-  { name: 'Moavia Khalid', initials: 'MK', color: '#6B4C3B', rating: 4, text: 'The pricing model for this package reflects genuine market rates for Pakistani travelers. Good value for the experience offered.', date: 'Mar 2025' },
+  { name: 'Abrar Aziz',    initials: 'AA', color: '#C8862A', rating: 5, text: 'We tested this package during development and the itinerary is well structured. Every detail from accommodation to transport has been carefully planned.', date: 'Nov 2025' },
+  { name: 'Atif Gujjar',   initials: 'AG', color: '#3D2B1F', rating: 5, text: 'Coordinating the research for this package gave us a real appreciation for how much Pakistan has to offer. The route and duration are well balanced.', date: 'Dec 2025' },
+  { name: 'Moavia Khalid', initials: 'MK', color: '#6B4C3B', rating: 4, text: 'The pricing model for this package reflects genuine market rates for Pakistani travelers. Good value for the experience offered.', date: 'Sep 2025' },
 ];
-
 const USD_RATE = 279;
 const toUSD   = (pkr: number) => Math.round(pkr / USD_RATE);
 
-// Date helpers
 const today       = new Date().toISOString().split('T')[0];
 const threeMonths = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
 
@@ -24,7 +21,6 @@ export default function PackageDetailPage() {
   const { selectedPkg: pkg, navigate, user } = useApp();
   const [tab, setTab]           = useState<Tab>('itinerary');
 
-  // Inquiry form state
   const [showForm, setShowForm] = useState(false);
   const [formName, setFormName] = useState(user?.name || '');
   const [formPhone, setFormPhone] = useState(user?.phone || '');
@@ -34,12 +30,10 @@ export default function PackageDetailPage() {
   const [loading, setLoading]   = useState(false);
   const [sent, setSent]         = useState(false);
   const [error, setError]       = useState('');
-
   if (!pkg) {
     navigate('packages');
     return null;
   }
-
   const totalPKR = pkg.price * formTravelers;
 
   const submitInquiry = async () => {
@@ -59,17 +53,16 @@ export default function PackageDetailPage() {
         paymentMethod:   'inquiry',
         specialRequests: `Name: ${formName} | Phone: ${formPhone}${formMsg ? ' | ' + formMsg : ''}`,
       });
-      // Also send contact email notification
       try {
         await sendContact({
           name: formName,
-          email: user?.email || 'inquiry@safarwise.com',
+          email: user?.email || 'safarwise32@gmail.com',
           phone: formPhone,
           subject: `Package Booking: ${pkg.name}`,
           message: `Package: ${pkg.name}\nDate: ${formDate}\nTravelers: ${formTravelers}\nTotal: PKR ${(pkg.price * formTravelers).toLocaleString()}\nPhone: ${formPhone}${formMsg ? '\nMessage: ' + formMsg : ''}`,
         });
-      } catch { /* email is optional — don't block booking */ }
-      setSent(true);
+      } catch {
+      setSent(true);}
     } catch (err: any) {
       setError(err?.response?.data?.message || 'Failed to submit. Make sure you are logged in and backend is running.');
     } finally {
@@ -79,8 +72,6 @@ export default function PackageDetailPage() {
 
   return (
     <div style={{ paddingTop: 68 }}>
-
-      {/* HERO IMAGE */}
       <div style={{ position: 'relative', height: 360, overflow: 'hidden' }}>
         <img src={pkg.image} alt={pkg.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(30,16,8,0.8) 0%, transparent 60%)' }} />
@@ -113,15 +104,10 @@ export default function PackageDetailPage() {
       </div>
 
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '2rem 1.5rem 4rem', display: 'grid', gridTemplateColumns: '1fr 320px', gap: '2.5rem', alignItems: 'start' }}>
-
-        {/* LEFT */}
         <div>
-          {/* DESCRIPTION */}
           <p style={{ fontSize: '0.95rem', color: 'var(--earth-light)', lineHeight: 1.85, marginBottom: '2rem', borderLeft: '3px solid var(--amber)', paddingLeft: '1.25rem' }}>
             {pkg.description}
           </p>
-
-          {/* HIGHLIGHTS */}
           {pkg.highlights && pkg.highlights.length > 0 && (
             <div style={{ marginBottom: '2rem' }}>
               <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '1.5rem', color: 'var(--earth)', marginBottom: '1rem' }}>Highlights</h2>
@@ -135,8 +121,6 @@ export default function PackageDetailPage() {
               </div>
             </div>
           )}
-
-          {/* TABS */}
           <div style={{ display: 'flex', gap: '0', borderBottom: '2px solid var(--sand)', marginBottom: '1.5rem' }}>
             {(['itinerary', 'includes', 'reviews'] as Tab[]).map(t => (
               <button key={t} onClick={() => setTab(t)} style={{
@@ -150,8 +134,6 @@ export default function PackageDetailPage() {
               </button>
             ))}
           </div>
-
-          {/* ITINERARY */}
           {tab === 'itinerary' && (
             <div>
               {pkg.itinerary?.map((day: any, i: number) => (
@@ -171,8 +153,6 @@ export default function PackageDetailPage() {
               ))}
             </div>
           )}
-
-          {/* INCLUDES */}
           {tab === 'includes' && (
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
               <div style={{ background: 'rgba(39,174,96,0.05)', border: '1px solid rgba(39,174,96,0.15)', borderRadius: 12, padding: '1.25rem' }}>
@@ -195,8 +175,6 @@ export default function PackageDetailPage() {
               </div>
             </div>
           )}
-
-          {/* REVIEWS */}
           {tab === 'reviews' && (
             <div>
               {MOCK_REVIEWS.map((r, i) => (
@@ -218,12 +196,8 @@ export default function PackageDetailPage() {
             </div>
           )}
         </div>
-
-        {/* RIGHT SIDEBAR */}
         <div style={{ position: 'sticky', top: 88 }}>
           <div style={{ background: 'white', borderRadius: 16, padding: '1.75rem', boxShadow: '0 4px 24px var(--shadow)', border: '1px solid rgba(200,134,42,0.1)' }}>
-
-            {/* PRICE */}
             <div style={{ marginBottom: '1.25rem', paddingBottom: '1rem', borderBottom: '1px solid var(--sand)' }}>
               {pkg.originalPrice && (
                 <div style={{ fontSize: '0.82rem', color: 'var(--earth-light)', textDecoration: 'line-through', marginBottom: '0.1rem' }}>
@@ -237,8 +211,6 @@ export default function PackageDetailPage() {
                 approx. ${toUSD(pkg.price).toLocaleString()} USD per person
               </div>
             </div>
-
-            {/* PACKAGE INFO */}
             {[
               ['Duration', pkg.duration],
               ['Destination', pkg.destination],
@@ -249,11 +221,9 @@ export default function PackageDetailPage() {
                 <span style={{ color: 'var(--earth)', fontWeight: 500, textAlign: 'right', maxWidth: '55%' }}>{v}</span>
               </div>
             ))}
-
             <div style={{ marginTop: '1.25rem', background: 'rgba(200,134,42,0.06)', border: '1px solid rgba(200,134,42,0.2)', borderRadius: 8, padding: '0.75rem', fontSize: '0.78rem', color: 'var(--earth-light)', lineHeight: 1.65, marginBottom: '1.25rem' }}>
               No payment required now. Fill your details and our team will call you within 24 hours to confirm.
             </div>
-
             {!showForm ? (
               <button className="btn-primary" style={{ width: '100%', justifyContent: 'center' }} onClick={() => user ? setShowForm(true) : navigate('login')}>
                 {!user ? 'Sign In to Book' : user.role === 'admin' ? 'Admin — Cannot Book' : 'Send Booking Inquiry'}

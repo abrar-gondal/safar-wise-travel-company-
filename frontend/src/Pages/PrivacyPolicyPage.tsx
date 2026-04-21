@@ -73,15 +73,13 @@ export default function PrivacyPolicyPage() {
         <h1>Privacy <em>Policy</em></h1>
         <p>How SafarWise collects, uses, and protects your personal information.</p>
       </div>
-      {/* LAST UPDATED */}
       <div style={{ background: 'var(--sand)', padding: '1rem 0', textAlign: 'center' }}>
         <div className="section-inner">
           <p style={{ fontSize: '0.82rem', color: 'var(--earth-light)' }}>
-            Last updated: January 2025 &nbsp;•&nbsp; This policy applies to all SafarWise services and platforms
+            Last updated: January 2026 &nbsp;•&nbsp; This policy applies to all SafarWise services and platforms
           </p>
         </div>
       </div>
-      {/* INTRO */}
       <section className="section" style={{ paddingBottom: 0 }}>
         <div className="section-inner">
           <div style={{ maxWidth: 820, margin: '0 auto', background: 'var(--earth)', borderRadius: 16, padding: '2rem', color: 'var(--ivory)' }}>
@@ -91,7 +89,6 @@ export default function PrivacyPolicyPage() {
           </div>
         </div>
       </section>
-      {/* SECTIONS */}
       <section className="section">
         <div className="section-inner">
           <div style={{ maxWidth: 820, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
@@ -111,7 +108,6 @@ export default function PrivacyPolicyPage() {
                 </div>
               </div>
             ))}
-            {/* Contact */}
             <div style={{ background: 'var(--sand)', borderRadius: 14, padding: '1.5rem', textAlign: 'center' }}>
               <p style={{ fontSize: '0.875rem', color: 'var(--earth-light)', lineHeight: 1.8 }}>
                 For privacy-related requests, contact our Data Protection Officer at <strong>safarwise32@gmail.com</strong>

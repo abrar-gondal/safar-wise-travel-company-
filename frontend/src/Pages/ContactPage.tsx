@@ -8,20 +8,17 @@ interface FormState {
   subject: string;
   message: string;
 }
-
 const CONTACT_ITEMS = [
   { icon: '📧', label: 'Email', value: 'safarwise32@gmail.com' },
   { icon: '📞', label: 'Phone', value: '+92 343 4106919' },
   { icon: '📍', label: 'Office', value: 'Lahore, Pakistan' },
   { icon: '🕐', label: 'Hours', value: 'Monday to Sunday, 9:00 AM - 8:00 PM PKT' },
 ];
-
 const SOCIAL = [
   { name: 'Facebook',  url: 'https://facebook.com/safarwise',   svg: '🇫' },
   { name: 'Instagram', url: 'https://instagram.com/safarwise',  svg: '🇮' },
   { name: 'YouTube',   url: 'https://youtube.com/@safarwise',   svg: '🇾' },
 ];
-
 const FAQ_QUICK = [
   { q: 'How quickly do you respond?', a: 'Within 24 hours on business days. For urgent travel needs, call us directly.' },
   { q: 'Can I request a custom itinerary?', a: 'Absolutely just select "Custom Tour" in the subject and describe your dream trip.' },
@@ -47,7 +44,6 @@ export default function ContactPage() {
       <section className="section">
         <div className="section-inner">
           <div className="contact-grid">
-            {/* LEFT — INFO */}
             <div>
               <div className="section-tag">Contact Info</div>
               <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '2rem', marginBottom: '0.5rem' }}>
@@ -80,7 +76,6 @@ export default function ContactPage() {
                   </a>
                 </div>
               </div>
-              {/* Location note instead of map */}
               <div style={{
                 marginTop: '2rem',
                 background: 'var(--sand)',
@@ -98,7 +93,6 @@ export default function ContactPage() {
                   SafarWise is a proudly Pakistani travel company. We operate tours across all four provinces from the Karakoram in the north to the Arabian Sea coast in the south.
                 </p>
               </div>
-              {/* Quick FAQs */}
               <div style={{ marginTop: '2rem' }}>
                 <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '1.15rem', color: 'var(--earth)', marginBottom: '0.85rem' }}>
                   Quick Answers
@@ -113,7 +107,6 @@ export default function ContactPage() {
                 </div>
               </div>
             </div>
-            {/* RIGHT — FORM */}
             <div className="contact-form">
               <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '1.5rem', marginBottom: '1.5rem' }}>
                 Send Us a Message

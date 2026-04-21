@@ -4,10 +4,8 @@ interface BackButtonProps {
   label?: string;
   style?: React.CSSProperties;
 }
-
 export default function BackButton({ label, style }: BackButtonProps) {
   const { goBack, page } = useApp();
-  // Never show on home page
   if (page === 'home') return null;
   return (
     <button

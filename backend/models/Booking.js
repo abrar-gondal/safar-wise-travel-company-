@@ -6,7 +6,6 @@ const BookingSchema = new mongoose.Schema({
     ref:      'User',
     required: true,
   },
-  // package is OPTIONAL — we use local frontend data, no MongoDB package docs required
   package: {
     type:    mongoose.Schema.Types.ObjectId,
     ref:     'Package',

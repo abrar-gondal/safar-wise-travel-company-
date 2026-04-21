@@ -5,7 +5,6 @@ interface CityTourCardProps {
   onView: () => void;
   onBook: () => void;
 }
-
 const USD_RATE = 279;
 export default function CityTourCard({ tour, onView, onBook }: CityTourCardProps) {
   return (
@@ -25,7 +24,6 @@ export default function CityTourCard({ tour, onView, onBook }: CityTourCardProps
         (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 20px var(--shadow)';
       }}
     >
-      {/* IMAGE */}
       <div style={{ height: 200, overflow: 'hidden', position: 'relative' }}>
         <img src={tour.image} alt={tour.name} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s' }}
           onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.06)')}
@@ -39,7 +37,6 @@ export default function CityTourCard({ tour, onView, onBook }: CityTourCardProps
           {tour.difficulty}
         </div>
       </div>
-      {/* BODY */}
       <div style={{ padding: '1.5rem' }}>
         <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '1.25rem', color: 'var(--earth)', marginBottom: '0.5rem' }}>
           {tour.name}
@@ -47,7 +44,6 @@ export default function CityTourCard({ tour, onView, onBook }: CityTourCardProps
         <p style={{ fontSize: '0.82rem', color: 'var(--earth-light)', lineHeight: 1.7, marginBottom: '1rem' }}>
           {tour.desc}
         </p>
-        {/* HIGHLIGHTS */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.1rem' }}>
           {tour.highlights.slice(0, 3).map((h: string) => (
             <span key={h} style={{ fontSize: '0.68rem', background: 'var(--sand)', color: 'var(--earth)', padding: '0.2rem 0.6rem', borderRadius: 50 }}>{h}</span>
@@ -58,7 +54,6 @@ export default function CityTourCard({ tour, onView, onBook }: CityTourCardProps
             </span>
           )}
         </div>
-        {/* FOOTER */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(61,43,31,0.08)', paddingTop: '1rem' }}>
           <div>
             <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '1.3rem', color: 'var(--earth)' }}>

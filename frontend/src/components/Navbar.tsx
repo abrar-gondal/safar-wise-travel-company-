@@ -35,7 +35,6 @@ const CloseIcon = () => (
     <line x1="6" y1="6" x2="18" y2="18"/>
   </svg>
 );
-
 export default function Navbar() {
   const { page, navigate, user, mobileOpen, setMobileOpen } = useApp();
   const [scrolled, setScrolled] = useState(false);
@@ -44,7 +43,6 @@ export default function Navbar() {
     window.addEventListener('scroll', handler);
     return () => window.removeEventListener('scroll', handler);
   }, []);
-
   return (
     <>
       <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>

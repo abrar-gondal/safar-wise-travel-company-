@@ -2,13 +2,11 @@ import { createContext, useContext, useState, useEffect} from 'react';
 import type { ReactNode } from 'react';
 import type { Package, User } from './types';
 
-// Pages that map to URL slugs
 const PAGE_TO_URL: Record<string, string> = {
   home: '/',
   services: '/services',
   packages: '/packages',
   'city-tours': '/city-tours',
-
   about: '/about',
   contact: '/contact',
   chatbot: '/chat',
@@ -53,16 +51,13 @@ interface AppContextType {
 }
 
 const AppContext = createContext<AppContextType | null>(null);
-
 export function AppProvider({ children }: { children: ReactNode }) {
-  // Read initial page from URL
+
   const getInitialPage = () => {
     const path = window.location.pathname;
     const hash = window.location.hash;
     const params = new URLSearchParams(window.location.search);
 
-    // Handle reset-password link from email
-    // Supports both /?token=...#reset-password and /reset-password?token=...
     if (
       (hash === '#reset-password' || path === '/reset-password') &&
       params.get('token') &&
@@ -70,8 +65,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
     ) {
       return 'reset-password';
     }
-
-    // Handle forgot-password direct URL
     if (path === '/forgot-password') {
       return 'forgot-password';
     }
@@ -88,13 +81,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [chatOpen, setChatOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  // Sync URL when page changes
   useEffect(() => {
     const url = PAGE_TO_URL[page] || '/';
     window.history.pushState({ page }, '', url);
     document.title = `SafarWise${page !== 'home' ? ' | ' + page.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : ''}`;
   }, [page]);
-  // Handle browser back/forward buttons
   useEffect(() => {
     const handler = (e: PopStateEvent) => {
       if (e.state?.page) {
@@ -106,7 +97,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     return () => window.removeEventListener('popstate', handler);
   }, []);
   const navigate = (p: string) => {
-    setHistory(h => [...h, page]); // push current page to history
+    setHistory(h => [...h, page]);
     setPage(p);
     setMobileOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -118,7 +109,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setPage(prev);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      // No history — go home
       setPage('home');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }

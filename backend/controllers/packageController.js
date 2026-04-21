@@ -1,6 +1,5 @@
 const Package = require('../models/Package');
 
-// GET all packages
 const getPackages = async (req, res) => {
   try {
     const { search, tag, featured } = req.query;
@@ -12,12 +11,9 @@ const getPackages = async (req, res) => {
         { destination: { $regex: search, $options: 'i' } },
       ];
     }
-
     if (tag) query.tags = { $in: [tag] };
     if (featured) query.featured = true;
-
     const packages = await Package.find(query).sort({ createdAt: -1 });
-
     return res.status(200).json({
       success: true,
       count: packages.length,
@@ -27,7 +23,6 @@ const getPackages = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
-// GET single package
 const getPackage = async (req, res) => {
   try {
     const pkg = await Package.findById(req.params.id);
@@ -39,7 +34,6 @@ const getPackage = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
-// CREATE package
 const createPackage = async (req, res) => {
   try {
     const pkg = await Package.create(req.body);
@@ -48,7 +42,6 @@ const createPackage = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
-// UPDATE package
 const updatePackage = async (req, res) => {
   try {
     const pkg = await Package.findByIdAndUpdate(
@@ -64,7 +57,6 @@ const updatePackage = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
-// DELETE package
 const deletePackage = async (req, res) => {
   try {
     const pkg = await Package.findByIdAndDelete(req.params.id);

@@ -6,7 +6,6 @@ import { PackageCard, ChatbotPanel } from '../components';
 import { updateProfile, getMyBookings } from '../api';
 
 type Tab = 'bookings' | 'favorites' | 'profile' | 'chat';
-
 const CalendarIcon = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>;
 const HeartNavIcon = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>;
 const UserNavIcon = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>;
@@ -20,25 +19,20 @@ const NAV_ITEMS_USER: { id: Tab; icon: JSX.Element; label: string }[] = [
   { id: 'profile',   icon: <UserNavIcon />,  label: 'Profile Info' },
   { id: 'chat',      icon: <ChatNavIcon />,  label: 'Chat History' },
 ];
-
 const NAV_ITEMS_ADMIN: { id: Tab; icon: JSX.Element; label: string }[] = [
   { id: 'bookings',  icon: <CalendarIcon />, label: 'Bookings'     },
   { id: 'profile',   icon: <UserNavIcon />,  label: 'Profile Info' },
 ];
-
-// Get initials from name
 const getInitials = (name: string) => {
   const parts = name.trim().split(' ');
   return parts.length >= 2
     ? parts[0][0].toUpperCase() + parts[1][0].toUpperCase()
     : parts[0][0].toUpperCase();
 };
-
 export default function ProfilePage() {
   const { user, setUser, navigate, setSelectedPkg, favorites, toggleFav } = useApp();
   const [tab, setTab] = useState<Tab>('bookings');
 
-  // Profile form state
   const [editName, setEditName] = useState(user?.name || '');
   const [editPhone, setEditPhone] = useState(user?.phone || '');
   const [saving, setSaving] = useState(false);
@@ -52,15 +46,12 @@ export default function ProfilePage() {
   const [seenCancelledIds, setSeenCancelledIds] = useState<string[]>(() => {
     try { return JSON.parse(localStorage.getItem('sw_seen_cancelled') || '[]'); } catch { return []; }
   });
-
-  // Auto-dismiss cancelled bookings that were already seen in a previous session
   const isHidden = (b: any) => {
     if (dismissedIds.includes(b._id)) return true;
     if (b.bookingStatus === 'cancelled' && seenCancelledIds.includes(b._id)) return true;
     return false;
   };
 
-  // Mark a cancelled booking as seen — it will disappear on next visit
   const markCancelledSeen = (id: string) => {
     if (!seenCancelledIds.includes(id)) {
       const updated = [...seenCancelledIds, id];
@@ -68,13 +59,11 @@ export default function ProfilePage() {
       localStorage.setItem('sw_seen_cancelled', JSON.stringify(updated));
     }
   };
-
   const dismissBooking = (id: string) => {
     const updated = [...dismissedIds, id];
     setDismissedIds(updated);
     localStorage.setItem('sw_dismissed_bookings', JSON.stringify(updated));
   };
-
   const fetchBookings = () => {
     if (!user) return;
     setBookingsLoading(true);
@@ -90,7 +79,6 @@ export default function ProfilePage() {
         setBookingsLoading(false);
       });
   };
-
   useEffect(() => {
     fetchBookings();
   }, [user]);
@@ -99,10 +87,8 @@ export default function ProfilePage() {
     navigate('login');
     return null;
   }
-
   const myFavorites = PACKAGES.filter(p => favorites.includes(p.id));
   const initials = getInitials(user.name);
-
   const handleSaveProfile = async () => {
     setSaving(true);
     setSaveMsg('');
@@ -122,16 +108,13 @@ export default function ProfilePage() {
       setSaving(false);
     }
   };
-
   const handleSignOut = () => {
     localStorage.removeItem('safarwise_token');
     setUser(null);
     navigate('home');
   };
-
   return (
     <div style={{ paddingTop: 68 }}>
-      {/* HEADER */}
       <div style={{ background: 'var(--earth)', padding: '3rem 2rem 2rem' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', color: 'white' }}>
           <h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '2rem', fontWeight: 300 }}>
@@ -139,12 +122,9 @@ export default function ProfilePage() {
           </h1>
         </div>
       </div>
-
       <section className="section" style={{ paddingTop: '2rem' }}>
         <div className="section-inner">
           <div className="profile-layout">
-
-            {/* SIDEBAR */}
             <div className="profile-sidebar">
               <div className="profile-avatar" style={{ background: 'var(--earth)', color: 'var(--amber)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Cormorant Garamond',serif", fontSize: '2rem', fontWeight: 600, letterSpacing: 2 }}>
                 {initials}
@@ -184,11 +164,7 @@ export default function ProfilePage() {
                 </button>
               </div>
             </div>
-
-            {/* CONTENT */}
             <div>
-
-              {/* BOOKINGS */}
               {tab === 'bookings' && (
                 <div className="profile-card">
                   <h3>My Bookings ({bookings.filter((b: any) => !isHidden(b)).length})</h3>
@@ -250,8 +226,6 @@ export default function ProfilePage() {
                   )}
                 </div>
               )}
-
-              {/* FAVORITES */}
               {tab === 'favorites' && (
                 <div className="profile-card">
                   <h3>Saved Packages ({myFavorites.length})</h3>
@@ -276,12 +250,9 @@ export default function ProfilePage() {
                   )}
                 </div>
               )}
-
-              {/* PROFILE INFO */}
               {tab === 'profile' && (
                 <div className="profile-card">
                   <h3>Profile Information</h3>
-
                   {saveMsg && (
                     <div style={{ background: 'rgba(39,174,96,0.08)', border: '1px solid rgba(39,174,96,0.2)', borderRadius: 8, padding: '0.75rem 1rem', color: '#27AE60', fontSize: '0.82rem', marginBottom: '1rem' }}>
                       {saveMsg}
@@ -312,7 +283,6 @@ export default function ProfilePage() {
                       />
                     </div>
                   </div>
-
                   <div className="form-row">
                     <div className="form-group">
                       <label className="form-label">Phone</label>
@@ -333,7 +303,6 @@ export default function ProfilePage() {
                       />
                     </div>
                   </div>
-
                   <button
                     className="btn-primary"
                     onClick={handleSaveProfile}
@@ -343,8 +312,6 @@ export default function ProfilePage() {
                   </button>
                 </div>
               )}
-
-              {/* CHAT */}
               {tab === 'chat' && (
                 <div className="profile-card">
                   <h3>Chat with Safi</h3>
@@ -354,7 +321,6 @@ export default function ProfilePage() {
                   <ChatbotPanel full />
                 </div>
               )}
-
             </div>
           </div>
         </div>

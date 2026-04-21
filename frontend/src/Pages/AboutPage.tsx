@@ -5,7 +5,7 @@ const TEAM = [
   {
     name: 'Abrar Aziz',
     role: 'Full Stack Developer',
-    bio: 'Designed and developed the complete SafarWise platform — from backend APIs and database architecture to frontend UI/UX and user authentication.',
+    bio: 'Designed and developed the complete SafarWise platform from backend APIs and database architecture to frontend UI/UX and user authentication.',
     img: '/team/abrar.jpg',
     initials: 'AA',
   },
@@ -52,28 +52,27 @@ const VALUES = [
 const REVIEWS = [
   {
     name: 'Abrar Aziz',
-    role: 'Full Stack Developer — SafarWise Team',
-    text: 'Building SafarWise was an incredible journey. We wanted to create a platform that truly represents Pakistan\'s beauty — the result is something we are all genuinely proud of.',
+    role: 'Full Stack Developer SafarWise Team',
+    text: 'Building SafarWise was an incredible journey. We wanted to create a platform that truly represents Pakistan\'s beauty the result is something we are all genuinely proud of.',
     initials: 'AA',
     color: '#C8862A',
   },
   {
     name: 'Atif Gujjar',
-    role: 'Project Coordinator — SafarWise Team',
-    text: 'Coordinating this project taught me how much Pakistan has to offer as a travel destination. SafarWise captures that spirit — from the mountains of Gilgit to the shores of Gwadar.',
+    role: 'Project Coordinator SafarWise Team',
+    text: 'Coordinating this project taught me how much Pakistan has to offer as a travel destination. SafarWise captures that spirit from the mountains of Gilgit to the shores of Gwadar.',
     initials: 'AG',
     color: '#3D2B1F',
   },
   {
     name: 'Moavia Khalid',
-    role: 'Financial Backer — SafarWise Team',
+    role: 'Financial Backer SafarWise Team',
     text: 'The financial planning behind SafarWise reflects real-world tour pricing and PKR-based booking systems. It was designed to be practical, not just a demo.',
     initials: 'MK',
     color: '#6B4C3B',
   },
 ];
 
-// Avatar component — shows image if available, fallback to initials
 const Avatar = ({ img, initials, color, size = 200 }: { img: string; initials: string; color: string; size?: number }) => {
   return (
     <div style={{ width: size, height: size, position: 'relative' }}>
@@ -111,15 +110,12 @@ export default function AboutPage() {
       <div className="page-header" style={{ position: 'relative' }}>
         <BackButton />
         <h1>About <em>SafarWise</em></h1>
-        <p>A Final Year Project by Software Engineering students at Superior University, Lahore — built to showcase Pakistan's beauty through technology.</p>
+        <p>A Final Year Project by Software Engineering students at Superior University, Lahore. Built to showcase Pakistan's beauty through technology.</p>
       </div>
-
-      {/* PROJECT STORY */}
       <section className="section">
         <div className="section-inner">
           <div className="about-grid">
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              {/* COMPANY VIDEO — place your video file at: public/videos/safarwise.mp4 */}
               <div style={{ borderRadius: 16, overflow: 'hidden', boxShadow: '0 8px 32px rgba(61,43,31,0.18)' }}>
                 <video
                   autoPlay
@@ -131,8 +127,6 @@ export default function AboutPage() {
                   <source src="/videos/safarwise.mp4" type="video/mp4" />
                 </video>
               </div>
-
-              {/* ORIGINAL PHOTOS below the video */}
               <div className="about-images" style={{ position: 'relative', height: 260 }}>
                 <img
                   className="about-img-main"
@@ -155,13 +149,11 @@ export default function AboutPage() {
               </h2>
               <div className="divider" />
               <p style={{ color: 'var(--earth-light)', lineHeight: 1.85, marginBottom: '1rem', fontSize: '0.95rem' }}>
-                SafarWise is a Final Year Project developed by a team of Software Engineering students at Superior University, Lahore. The idea was born from a simple observation — Pakistan is one of the most breathtaking countries on Earth, yet it lacks a modern, well-designed digital platform for local tourism.
+                SafarWise is a Final Year Project developed by a team of Software Engineering students at Superior University, Lahore. The idea was born from a simple observation Pakistan is one of the most breathtaking countries on Earth, yet it lacks a modern, well-designed digital platform for local tourism.
               </p>
               <p style={{ color: 'var(--earth-light)', lineHeight: 1.85, marginBottom: '1.25rem', fontSize: '0.95rem' }}>
-                From the soaring peaks of the Karakoram to the golden shores of the Makran Coast, from the ancient Mughal grandeur of Lahore to the wildflower meadows of Fairy Meadows — SafarWise is designed to connect travelers with the real, extraordinary Pakistan. The platform features a complete booking system, real authentication, OTP-based security, and a PKR-first pricing model built for Pakistani travelers.
+                From the soaring peaks of the Karakoram to the golden shores of the Makran Coast, from the ancient Mughal grandeur of Lahore to the wildflower meadows of Fairy Meadows SafarWise is designed to connect travelers with the real, extraordinary Pakistan. The platform features a complete booking system, real authentication, OTP-based security, and a PKR-first pricing model built for Pakistani travelers.
               </p>
-
-              {/* University Badge */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'var(--sand)', borderRadius: 12, padding: '1rem 1.25rem', marginBottom: '1.5rem', border: '1px solid rgba(200,134,42,0.15)' }}>
                 <img
                   src="cdn.brandfetch.io/idaM6PZcRV/w/200/h/200/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1747750909538"
@@ -174,10 +166,9 @@ export default function AboutPage() {
                 <div>
                   <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '1.1rem', color: 'var(--earth)', fontWeight: 600 }}>Superior University</div>
                   <div style={{ fontSize: '0.78rem', color: 'var(--earth-light)' }}>Department of Software Engineering, Lahore</div>
-                  <div style={{ fontSize: '0.72rem', color: 'var(--amber)', fontWeight: 600, marginTop: 2 }}>Final Year Project — 2025</div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--amber)', fontWeight: 600, marginTop: 2 }}>Final Year Project - 2025-26</div>
                 </div>
               </div>
-
               <div className="about-values">
                 {VALUES.map(v => (
                   <div key={v.title} className="value-card">
@@ -191,14 +182,12 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      {/* TEAM */}
       <section className="section" style={{ background: 'var(--sand)' }}>
         <div className="section-inner">
           <div className="section-header">
             <div className="section-tag">The Team</div>
             <h2 className="section-title">Meet the <em>Developers</em></h2>
-            <p className="section-desc">The students behind SafarWise — Superior University, Software Engineering.</p>
+            <p className="section-desc">The students behind SafarWise - Superior University, Software Engineering.</p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem', marginBottom: '2rem' }}>
             {TEAM.map(m => (
@@ -218,8 +207,6 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-
-          {/* SUPERVISOR */}
           <div style={{ maxWidth: 480, margin: '0 auto' }}>
             <div style={{ background: 'white', borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px var(--shadow)', border: '2px solid rgba(200,134,42,0.2)' }}>
               <div style={{ background: 'var(--earth)', padding: '0.6rem 1rem', textAlign: 'center' }}>
@@ -240,8 +227,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      {/* TEAM REVIEWS */}
       <section className="section">
         <div className="section-inner">
           <div className="section-header">
@@ -270,15 +255,13 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      {/* MISSION */}
       <section className="section" style={{ background: 'var(--sand)' }}>
         <div className="section-inner" style={{ maxWidth: 800, textAlign: 'center' }}>
           <div className="section-tag">Our Mission</div>
           <h2 className="section-title">To Show Pakistan<br />to the <em>World</em></h2>
           <div className="divider center" />
           <p style={{ color: 'var(--earth-light)', lineHeight: 1.9, fontSize: '1.05rem' }}>
-            Pakistan is home to five of the world's fourteen 8,000m peaks, the ancient Indus civilization, 1,000 kilometres of Arabian Sea coastline, and some of the most welcoming people on Earth. SafarWise was built to create a platform that connects travelers with all of this — through modern technology, a seamless booking experience, and a genuine love for Pakistan.
+            Pakistan is home to five of the world's fourteen 8,000m peaks, the ancient Indus civilization, 1,000 kilometres of Arabian Sea coastline, and some of the most welcoming people on Earth. SafarWise was built to create a platform that connects travelers with all of this through modern technology, a seamless booking experience, and a genuine love for Pakistan.
           </p>
           <div style={{ marginTop: '2.5rem', display: 'flex', gap: '3rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             {[

@@ -20,8 +20,6 @@ export default function ChatbotPage() {
 
       <section className="section">
         <div className="section-inner" style={{ maxWidth: 750 }}>
-          {/* AI INFO BADGE */}
-          {/* SUGGESTED QUESTIONS */}
           <div style={{ marginBottom: '1.25rem' }}>
             <div style={{ fontSize: '0.72rem', color: 'var(--earth-light)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.6rem' }}>
               Suggested questions
@@ -42,11 +40,7 @@ export default function ChatbotPage() {
               ))}
             </div>
           </div>
-
-          {/* CHATBOT */}
           <ChatbotPanel full />
-
-          {/* FALLBACK NOTE */}
           <div style={{
             marginTop: '1.25rem', textAlign: 'center', fontSize: '0.75rem',
             color: 'var(--earth-light)', lineHeight: 1.65,

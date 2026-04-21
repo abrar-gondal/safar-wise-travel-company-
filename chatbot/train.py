@@ -10,10 +10,8 @@ from model import ChatbotModel
 
 stemmer = PorterStemmer()
 
-# Load intents
 with open('intents.json', 'r') as f:
     intents = json.load(f)
-
 words = []
 classes = []
 documents = []
@@ -35,14 +33,11 @@ print(f"Words: {len(words)}")
 print(f"Classes: {len(classes)}")
 print(f"Documents: {len(documents)}")
 
-# Save words and classes
 pickle.dump(words, open('words.pkl', 'wb'))
 pickle.dump(classes, open('classes.pkl', 'wb'))
 
-# Create training data
 training = []
 output_empty = [0] * len(classes)
-
 for doc in documents:
     bag = []
     word_patterns = [stemmer.stem(w.lower()) for w in doc[0]]
@@ -51,7 +46,6 @@ for doc in documents:
     output_row = list(output_empty)
     output_row[classes.index(doc[1])] = 1
     training.append([bag, output_row])
-
 import random
 random.shuffle(training)
 training = np.array(training, dtype=object)
@@ -65,7 +59,6 @@ y_tensor = torch.tensor(y)
 dataset = TensorDataset(X_tensor, y_tensor)
 loader  = DataLoader(dataset, batch_size=8, shuffle=True)
 
-# Build and train model
 input_size  = len(X[0])
 hidden_size = 128
 output_size = len(classes)
@@ -85,7 +78,6 @@ for epoch in range(EPOCHS):
         total_loss += loss.item()
     if (epoch + 1) % 50 == 0:
         print(f"Epoch {epoch+1}/{EPOCHS}  Loss: {total_loss:.4f}")
-# Save model
 torch.save({
     'model_state': model.state_dict(),
     'input_size':  input_size,

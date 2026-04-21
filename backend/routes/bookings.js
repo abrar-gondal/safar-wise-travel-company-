@@ -9,11 +9,10 @@ const {
   cancelBooking,
 } = require('../controllers/bookingController');
 
-// IMPORTANT: specific routes MUST come before /:id routes
-router.get('/my',         protect, getMyBookings);        // GET  /api/bookings/my
-router.get('/all',        protect, getAllBookings);        // GET  /api/bookings/all
-router.post('/',          protect, createBooking);         // POST /api/bookings
-router.put('/:id/status', protect, updateBookingStatus);  // PUT  /api/bookings/:id/status
-router.put('/:id/cancel', protect, cancelBooking);        // PUT  /api/bookings/:id/cancel
+router.get('/my',         protect, getMyBookings);        
+router.get('/all',        protect, getAllBookings);        
+router.post('/',          protect, createBooking);         
+router.put('/:id/status', protect, updateBookingStatus);  
+router.put('/:id/cancel', protect, cancelBooking);        
 
 module.exports = router;

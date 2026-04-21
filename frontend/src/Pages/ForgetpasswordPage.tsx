@@ -42,7 +42,6 @@ export default function ForgotPasswordPage() {
       setLoading(false);
     }
   };
-
   const resetPassword = async () => {
     setError('');
     if (!password || !confirm) { setError('Please fill both fields.'); return; }
@@ -63,7 +62,6 @@ export default function ForgotPasswordPage() {
       setLoading(false);
     }
   };
-
   const getStrength = (p: string) => {
     if (!p) return { label: '', color: 'transparent', width: '0%' };
     if (p.length < 6) return { label: 'Too short', color: '#C0392B', width: '25%' };
@@ -76,7 +74,6 @@ export default function ForgotPasswordPage() {
   const stepIndex = { email: 0, otp: 1, newpassword: 2, success: 3 };
   return (
     <div className="auth-page">
-      {/* LEFT */}
       <div className="auth-left">
         <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', padding: '2rem' }}>
           <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>
@@ -96,14 +93,12 @@ export default function ForgotPasswordPage() {
           </p>
         </div>
       </div>
-      {/* RIGHT */}
       <div className="auth-right">
         <div className="auth-box">
           <div className="logo" style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <img src={logoImg} alt="SafarWise" style={{ height: 48, width: 48, objectFit: 'contain' }} />
             <span className="logo-text">Safar<span>Wise</span></span>
           </div>
-          {/* STEP INDICATOR */}
           {step !== 'success' && (
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1.75rem' }}>
               {steps.map((s, i) => (
@@ -129,13 +124,11 @@ export default function ForgotPasswordPage() {
               ))}
             </div>
           )}
-          {/* ERROR */}
           {error && (
             <div style={{ background: 'rgba(192,57,43,0.08)', border: '1px solid rgba(192,57,43,0.2)', borderRadius: 8, padding: '0.75rem 1rem', color: '#C0392B', fontSize: '0.82rem', marginBottom: '1rem' }}>
               ⚠️ {error}
             </div>
           )}
-          {/* STEP 1 — EMAIL */}
           {step === 'email' && (
             <>
               <h2 style={{ marginBottom: '0.5rem' }}>Reset Password</h2>
@@ -158,7 +151,6 @@ export default function ForgotPasswordPage() {
               </button>
             </>
           )}
-          {/* STEP 2 — OTP */}
           {step === 'otp' && (
             <>
               <h2 style={{ marginBottom: '0.5rem' }}>Enter OTP</h2>
@@ -188,7 +180,6 @@ export default function ForgotPasswordPage() {
               </div>
             </>
           )}
-          {/* STEP 3 — NEW PASSWORD */}
           {step === 'newpassword' && (
             <>
               <h2 style={{ marginBottom: '0.5rem' }}>New Password</h2>
@@ -240,7 +231,6 @@ export default function ForgotPasswordPage() {
               </button>
             </>
           )}
-          {/* STEP 4 — SUCCESS */}
           {step === 'success' && (
             <div style={{ textAlign: 'center', padding: '1rem 0' }}>
               <div style={{ fontSize: '3.5rem', marginBottom: '1rem' }}>🎉</div>

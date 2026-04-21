@@ -7,7 +7,7 @@ const FAQS = [
     category: 'Booking & Payments',
     items: [
       { q: 'How do I book a tour with SafarWise?', a: 'You can book directly through our website by browsing packages and clicking "Book Now", or contact our team via the Contact page for a custom itinerary. A 30% deposit is required to confirm your booking.' },
-      { q: 'What payment methods do you accept?', a: 'We accept bank transfers, credit/debit cards (Visa, Mastercard), EasyPaisa, JazzCash, and cash payments at our office. Full payment is required 30 days before the departure date.' },
+      { q: 'What payment methods do you accept?', a: 'We would contact you about payment options once you express interest in a tour.' },
       { q: 'Can I pay in installments?', a: 'Yes! We offer flexible installment plans for bookings made more than 60 days in advance. A 30% deposit secures your spot, with the remaining balance split over agreed milestones.' },
       { q: 'Is my booking confirmed immediately?', a: 'Once your deposit is received, you will get a confirmation email within 24 hours with your booking reference, itinerary details, and pre-departure information.' },
     ],
@@ -60,7 +60,6 @@ export default function FAQsPage() {
         <h1>Frequently Asked <em>Questions</em></h1>
         <p>Everything you need to know about traveling with SafarWise across Pakistan.</p>
       </div>
-      {/* SEARCH HINT */}
       <section style={{ background: 'var(--earth)', padding: '2rem 0' }}>
         <div className="section-inner" style={{ textAlign: 'center' }}>
           <p style={{ color: 'rgba(245,237,214,0.7)', fontSize: '0.9rem' }}>
@@ -68,13 +67,11 @@ export default function FAQsPage() {
           </p>
         </div>
       </section>
-      {/* FAQ SECTIONS */}
       <section className="section">
         <div className="section-inner">
           <div style={{ maxWidth: 800, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '3rem' }}>
             {FAQS.map((cat) => (
               <div key={cat.category}>
-                {/* Category heading */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.25rem' }}>
                   <div style={{ flex: 1, height: 1, background: 'rgba(200,134,42,0.2)' }} />
                   <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '1.5rem', color: 'var(--earth)', whiteSpace: 'nowrap' }}>
@@ -82,7 +79,6 @@ export default function FAQsPage() {
                   </h2>
                   <div style={{ flex: 1, height: 1, background: 'rgba(200,134,42,0.2)' }} />
                 </div>
-                {/* Items */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                   {cat.items.map((item, j) => {
                     const key = `${cat.category}-${j}`;
@@ -99,7 +95,6 @@ export default function FAQsPage() {
                           transition: 'all 0.3s',
                         }}
                       >
-                        {/* Question */}
                         <div
                           style={{ padding: '1.1rem 1.4rem', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}
                           onClick={() => toggle(key)}
@@ -111,7 +106,6 @@ export default function FAQsPage() {
                             +
                           </span>
                         </div>
-                        {/* Answer */}
                         {isOpen && (
                           <div style={{ padding: '0 1.4rem 1.2rem', borderTop: '1px solid rgba(200,134,42,0.1)' }}>
                             <p style={{ fontSize: '0.88rem', color: 'var(--earth-light)', lineHeight: 1.8, marginTop: '0.9rem' }}>
@@ -128,7 +122,6 @@ export default function FAQsPage() {
           </div>
         </div>
       </section>
-      {/* STILL NEED HELP */}
       <section className="section" style={{ background: 'var(--sand)' }}>
         <div className="section-inner">
           <div className="promo-banner">

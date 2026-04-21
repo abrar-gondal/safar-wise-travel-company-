@@ -52,14 +52,12 @@ export default function PaymentPage() {
       setBookingRef(res.data.booking?.bookingReference || 'SW-' + Math.floor(100000 + Math.random() * 900000));
       setSent(true);
     } catch {
-      // Even if backend fails show success — inquiry is noted
       setBookingRef('SW-' + Math.floor(100000 + Math.random() * 900000));
       setSent(true);
     } finally {
       setLoading(false);
     }
   };
-  // SUCCESS STATE
   if (sent) return (
     <div style={{ paddingTop: 68, minHeight: '100vh', background: 'var(--ivory)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '5rem 1.5rem' }}>
       <div style={{ background: 'white', borderRadius: 20, padding: '3rem 2.5rem', maxWidth: 520, width: '100%', boxShadow: '0 8px 48px var(--shadow)', textAlign: 'center' }}>
@@ -93,7 +91,6 @@ export default function PaymentPage() {
         <div style={{ background: 'rgba(200,134,42,0.08)', border: '1px solid rgba(200,134,42,0.2)', borderRadius: 10, padding: '1rem', fontSize: '0.82rem', color: 'var(--earth-light)', lineHeight: 1.7, marginBottom: '1.75rem', textAlign: 'left' }}>
           Our team will contact you to confirm your booking, discuss payment options, and answer any questions about your trip. No payment is required at this stage.
         </div>
-
         <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
           <button className="btn-primary" onClick={() => navigate('profile')}>View My Bookings</button>
           <button className="btn-ghost" onClick={() => navigate('packages')}>Browse More Packages</button>
@@ -101,7 +98,6 @@ export default function PaymentPage() {
       </div>
     </div>
   );
-  // INQUIRY FORM
   return (
     <div style={{ paddingTop: 68, minHeight: '100vh', background: 'var(--ivory)' }}>
 
@@ -114,11 +110,7 @@ export default function PaymentPage() {
       </div>
 
       <div style={{ maxWidth: 760, margin: '2rem auto', padding: '0 1.5rem 4rem', display: 'grid', gridTemplateColumns: '1fr 280px', gap: '2rem', alignItems: 'start' }}>
-
-        {/* FORM */}
         <div style={{ background: 'white', borderRadius: 16, padding: '2rem', boxShadow: '0 4px 24px var(--shadow)' }}>
-
-          {/* INFO BOX */}
           <div style={{ background: 'rgba(200,134,42,0.06)', border: '1px solid rgba(200,134,42,0.2)', borderRadius: 10, padding: '1rem 1.25rem', marginBottom: '1.75rem', display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" strokeWidth="1.5" style={{ flexShrink: 0, marginTop: 2 }}>
               <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
@@ -127,22 +119,18 @@ export default function PaymentPage() {
               <strong style={{ color: 'var(--earth)' }}>No payment required now.</strong> Fill in your details and our team will contact you within 24 hours to confirm your booking and arrange payment.
             </div>
           </div>
-
           <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '1.5rem', marginBottom: '1.5rem' }}>
             Your <em style={{ color: 'var(--amber)' }}>Details</em>
           </h3>
-
           {error && (
             <div style={{ background: 'rgba(192,57,43,0.08)', border: '1px solid rgba(192,57,43,0.2)', borderRadius: 8, padding: '0.75rem 1rem', color: '#C0392B', fontSize: '0.83rem', marginBottom: '1.25rem' }}>
               {error}
             </div>
           )}
-
           <div className="form-group">
             <label className="form-label">Full Name * (as on CNIC or Passport)</label>
             <input className="form-input" placeholder="Enter your full name" value={name} onChange={e => setName(e.target.value)} />
           </div>
-
           <div className="form-row">
             <div className="form-group">
               <label className="form-label">Phone Number *</label>
@@ -153,7 +141,6 @@ export default function PaymentPage() {
               <input className="form-input" placeholder="35202-1234567-1" value={cnic} onChange={e => setCnic(e.target.value)} />
             </div>
           </div>
-
           <div className="form-row">
             <div className="form-group">
               <label className="form-label">Preferred Travel Date *</label>
@@ -180,14 +167,12 @@ export default function PaymentPage() {
           >
             {loading ? 'Sending Request...' : 'Send Booking Request'}
           </button>
-
           <p style={{ fontSize: '0.75rem', color: 'var(--earth-light)', textAlign: 'center', marginTop: '0.75rem', lineHeight: 1.6 }}>
             By submitting you agree to our{' '}
             <span style={{ color: 'var(--amber)', cursor: 'pointer' }} onClick={() => navigate('booking-policy')}>Booking Policy</span>.
             Our team will call you within 24 hours.
           </p>
         </div>
-        {/* SIDEBAR */}
         <div style={{ position: 'sticky', top: 88 }}>
           <div style={{ background: 'white', borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px var(--shadow)' }}>
             <img src={pkg.image} alt={pkg.name} style={{ width: '100%', height: 160, objectFit: 'cover' }} />

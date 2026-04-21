@@ -54,7 +54,6 @@ const PLANS = [
 ];
 const WHAT_COVERED = [
   { icon: '🏥', title: 'Emergency Medical', desc: 'Covers hospital stays, emergency surgery, doctor fees, and prescribed medication during your trip.' },
-  // { icon: '🚁', title: 'Helicopter Evacuation', desc: 'Critical for mountain treks covers helicopter rescue from remote areas to the nearest hospital.' },
   { icon: '✈️', title: 'Trip Cancellation', desc: 'Reimburses non-refundable costs if you must cancel due to illness, family emergency, or natural disaster.' },
   { icon: '🧳', title: 'Baggage & Belongings', desc: 'Covers lost, stolen, or damaged luggage and personal items during your journey.' },
   { icon: '⏰', title: 'Travel Delay', desc: 'Compensates for additional accommodation and meals caused by significant travel delays.' },
@@ -63,7 +62,6 @@ const WHAT_COVERED = [
 
 export default function TravelInsurancePage() {
   const { navigate } = useApp();
-
   return (
     <div>
       <div className="page-header" style={{ position: 'relative' }}>
@@ -71,8 +69,6 @@ export default function TravelInsurancePage() {
         <h1>Travel <em>Insurance</em></h1>
         <p>Travel with confidence across Pakistan fully protected for every adventure.</p>
       </div>
-
-      {/* WHY INSURANCE */}
       <section style={{ background: 'var(--earth)', padding: '3rem 0' }}>
         <div className="section-inner">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }}>
@@ -101,8 +97,6 @@ export default function TravelInsurancePage() {
           </div>
         </div>
       </section>
-
-      {/* WHAT'S COVERED */}
       <section className="section">
         <div className="section-inner">
           <div className="section-header">
@@ -122,8 +116,6 @@ export default function TravelInsurancePage() {
           </div>
         </div>
       </section>
-
-      {/* PLANS */}
       <section className="section" style={{ background: 'var(--sand)' }}>
         <div className="section-inner">
           <div className="section-header">
@@ -165,8 +157,6 @@ export default function TravelInsurancePage() {
           </div>
         </div>
       </section>
-
-      {/* CTA */}
       <section className="section">
         <div className="section-inner">
           <div className="promo-banner">

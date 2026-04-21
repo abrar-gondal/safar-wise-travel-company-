@@ -17,7 +17,6 @@ export default function LoginPage() {
   const submit = async () => {
     setError('');
     setSuccess('');
-    // Validation
     if (!email || !password) {
       setError('Please enter email and password.');
       return;
@@ -40,9 +39,7 @@ export default function LoginPage() {
         response = await registerUser({ name, email, password, phone });
       }
       const { token, user } = response.data;
-      // Save token to localStorage
       localStorage.setItem('safarwise_token', token);
-      // Set user inapp context
       setUser({
         name: user.name,
         email: user.email,
@@ -54,9 +51,7 @@ export default function LoginPage() {
         favorites: [],
       });
       setSuccess(isLogin ? 'Login successful! Redirecting...' : 'Account created! Redirecting...');
-
       setTimeout(() => navigate('profile'), 1000);
-
     } catch (err: any) {
       const message = err?.response?.data?.message || 'Something went wrong. Please try again.';
       setError(message);
@@ -67,7 +62,6 @@ export default function LoginPage() {
 
   return (
     <div className="auth-page">
-      {/* LEFT PANEL */}
       <div className="auth-left">
         <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', padding: '2rem' }}>
           <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '3rem', color: 'var(--sand)', fontWeight: 300 }}>
@@ -85,7 +79,6 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-      {/* RIGHT PANEL */}
       <div className="auth-right">
         <div className="auth-box">
           <div className="logo" style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -96,7 +89,6 @@ export default function LoginPage() {
           <p style={{ color: 'var(--earth-light)', fontSize: '0.88rem', marginBottom: '1.5rem' }}>
             {isLogin ? 'Sign in to access your bookings and favorites.' : 'Join us and start exploring Pakistan.'}
           </p>
-          {/* ERROR MESSAGE */}
           {error && (
             <div style={{
               background: 'rgba(192,57,43,0.08)',
@@ -110,7 +102,6 @@ export default function LoginPage() {
               ⚠️ {error}
             </div>
           )}
-          {/* SUCCESS MESSAGE */}
           {success && (
             <div style={{
               background: 'rgba(39,174,96,0.08)',
@@ -124,7 +115,6 @@ export default function LoginPage() {
               ✅ {success}
             </div>
           )}
-          {/* REGISTER ONLY — Name */}
           {!isLogin && (
             <div className="form-group">
               <label className="form-label">Full Name *</label>
@@ -136,7 +126,6 @@ export default function LoginPage() {
               />
             </div>
           )}
-          {/* EMAIL */}
           <div className="form-group">
             <label className="form-label">Email *</label>
             <input
@@ -147,7 +136,6 @@ export default function LoginPage() {
               onChange={e => setEmail(e.target.value)}
             />
           </div>
-          {/* REGISTER ONLY — Phone */}
           {!isLogin && (
             <div className="form-group">
               <label className="form-label">Phone</label>
@@ -159,7 +147,6 @@ export default function LoginPage() {
               />
             </div>
           )}
-          {/* PASSWOR */}
           <div className="form-group" style={{ position: 'relative' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
               <label className="form-label" style={{ margin: 0 }}>Password *</label>
@@ -181,7 +168,6 @@ export default function LoginPage() {
               onKeyDown={e => e.key === 'Enter' && submit()}
             />
           </div>
-          {/* SUBMIT BUTTON */}
           <button
             className="btn-primary"
             style={{ width: '100%', justifyContent: 'center', marginTop: '0.5rem' }}
@@ -193,7 +179,6 @@ export default function LoginPage() {
               : isLogin ? '🔐 Sign In' : '🚀 Create Account'
             }
           </button>
-          {/* SWITCH */}
           <div className="auth-switch" style={{ marginTop: '1.25rem', textAlign: 'center', fontSize: '0.85rem', color: 'var(--earth-light)' }}>
             {isLogin ? (
               <>Don't have an account?{' '}
@@ -215,7 +200,6 @@ export default function LoginPage() {
               </>
             )}
           </div>
-
         </div>
       </div>
     </div>

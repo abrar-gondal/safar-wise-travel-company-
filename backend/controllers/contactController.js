@@ -1,17 +1,12 @@
 const Contact = require('../models/Contact');
 
-// @route   POST /api/contact
-// @access  Public
 const submitContact = async (req, res) => {
   try {
     const { name, email, phone, subject, message } = req.body;
-
     if (!name || !email || !subject || !message) {
       return res.status(400).json({ success: false, message: 'Please fill all required fields' });
     }
-
     const contact = await Contact.create({ name, email, phone, subject, message });
-
     return res.status(201).json({
       success: true,
       message: 'Message sent successfully! We will reply within 24 hours.',
@@ -21,8 +16,6 @@ const submitContact = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
-// @route   GET /api/contact
-// @access  Admin only
 const getContacts = async (req, res) => {
   try {
     const contacts = await Contact.find().sort({ createdAt: -1 });

@@ -10,7 +10,6 @@ const generateToken = (id) => {
   });
 };
 
-// REGISTER
 const register = async (req, res) => {
   try {
     const { name, email, password, phone } = req.body;
@@ -24,17 +23,14 @@ const register = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Email already registered' });
     }
 
-    // Hash password manually here — no pre save hook
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-
     const user = await User.create({
       name,
       email,
       password: hashedPassword,
       phone,
     });
-
     const token = generateToken(user._id);
 
     return res.status(201).json({
@@ -53,8 +49,6 @@ const register = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
-
-// LOGIN
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -62,17 +56,14 @@ const login = async (req, res) => {
     if (!email || !password) {
       return res.status(400).json({ success: false, message: 'Please provide email and password' });
     }
-
     const user = await User.findOne({ email }).select('+password');
     if (!user) {
       return res.status(401).json({ success: false, message: 'Invalid email or password' });
     }
-
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(401).json({ success: false, message: 'Invalid email or password' });
     }
-
     const token = generateToken(user._id);
 
     return res.status(200).json({
@@ -91,8 +82,6 @@ const login = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
-
-// GET ME
 const getMe = async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
@@ -110,8 +99,6 @@ const getMe = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
-
-// UPDATE PROFILE
 const updateProfile = async (req, res) => {
   try {
     const { name, phone } = req.body;
@@ -141,13 +128,10 @@ const forgotPassword = (req, res) => {
   if (!email) {
     return res.status(400).json({ success: false, message: 'Please provide your email' });
   }
-
   User.findOne({ email }).then((user) => {
     if (!user) {
       return res.status(404).json({ success: false, message: 'No account found with that email' });
     }
-
-    // Generate reset token
     const resetToken = Math.floor(100000 + Math.random() * 900000).toString();
     const resetExpire = new Date(Date.now() + 30 * 60 * 1000); // 30 mins
 
@@ -155,8 +139,6 @@ const forgotPassword = (req, res) => {
     user.resetPasswordExpire = resetExpire;
 
     user.save().then(() => {
-      //const resetUrl = `http://localhost:5173/reset-password?token=${resetToken}&email=${encodeURIComponent(email)}#reset-password`;
-
       const html = `
   <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
     <div style="background: #3D2B1F; padding: 20px; text-align: center; border-radius: 10px 10px 0 0;">
@@ -194,18 +176,13 @@ const forgotPassword = (req, res) => {
         user.save();
         return res.status(500).json({ success: false, message: 'Email could not be sent. Try again.' });
       });
-
     }).catch((err) => {
       return res.status(500).json({ success: false, message: err.message });
     });
-
   }).catch((err) => {
     return res.status(500).json({ success: false, message: err.message });
   });
 };
-
-// @route   POST /api/auth/reset-password
-// @access  Public
 const resetPassword = (req, res) => {
   const { email, token, password } = req.body;
 
@@ -216,7 +193,6 @@ const resetPassword = (req, res) => {
   if (password.length < 6) {
     return res.status(400).json({ success: false, message: 'Password must be at least 6 characters' });
   }
-
   User.findOne({
     email,
     resetPasswordToken: token,
@@ -225,15 +201,12 @@ const resetPassword = (req, res) => {
     if (!user) {
       return res.status(400).json({ success: false, message: 'Reset link is invalid or has expired' });
     }
-
-    // const bcrypt = require('bcryptjs');
     const salt   = bcrypt.genSaltSync(10);
     const hashed = bcrypt.hashSync(password, salt);
 
     user.password            = hashed;
     user.resetPasswordToken  = null;
     user.resetPasswordExpire = null;
-
     user.save().then(() => {
       return res.status(200).json({
         success: true,
@@ -242,13 +215,10 @@ const resetPassword = (req, res) => {
     }).catch((err) => {
       return res.status(500).json({ success: false, message: err.message });
     });
-
   }).catch((err) => {
     return res.status(500).json({ success: false, message: err.message });
   });
 };
-// @route   POST /api/auth/verify-otp
-// @access  Public
 const verifyOtp = (req, res) => {
   const { email, token } = req.body;
   if (!email || !token) {

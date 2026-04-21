@@ -17,26 +17,6 @@ export interface Package {
   excludes: string[];
 }
 
-// export interface Destination {
-//   id: number;
-//   name: string;
-//   country: string;
-//   image: string;
-//   gallery: string[];
-//   packages: number;
-//   description: string;
-//   longDescription: string;
-//   climate: string;
-//   bestTime: string;
-//   language: string;
-//   currency: string;
-//   timezone: string;
-//   highlights: string[];
-//   thingsToDo: { icon: string; title: string; desc: string }[];
-//   facts: { label: string; value: string }[];
-//   tips: string[];
-// }
-
 export interface User {
   id?: string;
   name: string;

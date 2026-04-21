@@ -83,24 +83,20 @@ export default function BookingPolicyPage() {
         <h1>Booking <em>Policy</em></h1>
         <p>Please read our booking terms carefully before confirming your reservation with SafarWise.</p>
       </div>
-      {/* LAST UPDATED */}
       <div style={{ background: 'var(--sand)', padding: '1rem 0', textAlign: 'center' }}>
         <div className="section-inner">
           <p style={{ fontSize: '0.82rem', color: 'var(--earth-light)' }}>Last updated: January 2025 &nbsp;•&nbsp; Effective for all bookings made from 1st January 2026 onwards</p>
         </div>
       </div>
-      {/* CONTENT */}
       <section className="section">
         <div className="section-inner">
           <div style={{ maxWidth: 820, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             {SECTIONS.map((sec, i) => (
               <div key={i} style={{ background: 'white', borderRadius: 16, overflow: 'hidden', boxShadow: '0 2px 16px var(--shadow)', border: '1px solid rgba(200,134,42,0.08)' }}>
-                {/* Header */}
                 <div style={{ background: 'var(--earth)', padding: '1.25rem 1.75rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                   <span style={{ fontSize: '1.4rem' }}>{sec.icon}</span>
                   <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '1.3rem', color: 'var(--ivory)', margin: 0 }}>{sec.title}</h3>
                 </div>
-                {/* Content */}
                 <div style={{ padding: '1.5rem 1.75rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                   {sec.content.map((line, j) => (
                     <div key={j} style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
@@ -111,7 +107,6 @@ export default function BookingPolicyPage() {
                 </div>
               </div>
             ))}
-            {/* Contact note */}
             <div style={{ background: 'var(--sand)', borderRadius: 14, padding: '1.5rem', textAlign: 'center' }}>
               <p style={{ fontSize: '0.875rem', color: 'var(--earth-light)', lineHeight: 1.7 }}>
                 For questions about this policy, contact us at <strong>safarwise32@gmail.com</strong> or call <strong>+92 343 4106919</strong>.

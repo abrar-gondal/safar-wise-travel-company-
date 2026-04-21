@@ -28,7 +28,6 @@ export default function BlogPage() {
         <h1>SafarWise <em>Blog</em></h1>
         <p>Stories, guides and travel inspiration from across Pakistan.</p>
       </div>
-      {/* FILTER + SEARCH */}
       <section style={{ background: 'var(--sand)', padding: '2rem 0' }}>
         <div className="section-inner">
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -50,7 +49,6 @@ export default function BlogPage() {
           </div>
         </div>
       </section>
-      {/* FEATURED */}
       {isDefault && (
         <section className="section" style={{ paddingBottom: 0 }}>
           <div className="section-inner">
@@ -58,7 +56,6 @@ export default function BlogPage() {
           </div>
         </section>
       )}
-      {/* GRID */}
       <section className="section">
         <div className="section-inner">
           {filtered.length === 0 ? (
@@ -74,7 +71,6 @@ export default function BlogPage() {
           )}
         </div>
       </section>
-      {/* CTA */}
       <section className="section" style={{ background: 'var(--sand)' }}>
         <div className="section-inner" style={{ textAlign: 'center', maxWidth: 600 }}>
           <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '2rem', marginBottom: '0.75rem' }}>

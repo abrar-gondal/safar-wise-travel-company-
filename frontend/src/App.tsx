@@ -65,7 +65,6 @@ function AppShell() {
           {chatOpen && <ChatbotPanel onClose={() => setChatOpen(false)} />}
         </>
       )}
-      {/* WhatsApp Floating Button */}
       <a
         href="https://wa.me/923434106919?text=Assalam%20o%20Alaikum!%20I%20am%20interested%20in%20a%20SafarWise%20tour%20package.%20Can%20you%20help%20me%3F"
         target="_blank"

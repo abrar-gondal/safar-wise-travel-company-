@@ -5,7 +5,6 @@ import BackButton from '../components/BackButton';
 const SvgIcon = ({ d, size = 28 }: { d: string; size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">{d}</svg>
 );
-
 const SERVICE_ICONS: Record<string, JSX.Element> = {
   mountain: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M8 3l4 8 5-5 5 8H2L8 3z"/></svg>,
   tent:     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3.5 21L12 3l8.5 18"/><path d="M12 3l5 10H7z"/></svg>,
@@ -17,7 +16,6 @@ const SERVICE_ICONS: Record<string, JSX.Element> = {
   camera:   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>,
   family:   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
 };
-
 const SERVICES = [
   {
     icon: 'mountain',
@@ -83,7 +81,6 @@ const SERVICES = [
     color: '#b7791f',
   },
 ];
-
 const BADGES = [
   { label: 'Safety Certified Guides' },
   { label: 'Custom Itineraries' },
@@ -92,14 +89,12 @@ const BADGES = [
   { label: '24/7 Support' },
   { label: 'Responsible Tourism' },
 ];
-
 const ShieldIcon = () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>;
 const TargetIcon = () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>;
 const UsersIcon = () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" strokeWidth="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>;
 const GemIcon = () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" strokeWidth="1.5"><polygon points="6 3 18 3 22 9 12 22 2 9"/><polyline points="2 9 6 3"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="12" y1="3" x2="12" y2="9"/></svg>;
 const PhoneSupportIcon = () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" strokeWidth="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6 6l1.27-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>;
 const LeafIcon = () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" strokeWidth="1.5"><path d="M11 20A7 7 0 0 1 4 13C4 8 9 3 15 3c0 4.97-3.03 9-4 10"/><path d="M11 20a7 7 0 0 0 5.196-2.804 17 17 0 0 0 3.594-5.796C17 10 12 7 9 9"/></svg>;
-
 const WHY_US = [
   { icon: <ShieldIcon />,       title: 'Safety First',          desc: 'All tours are fully risk-assessed with certified guides and 24/7 emergency support throughout your journey.' },
   { icon: <TargetIcon />,       title: 'Tailored Itineraries',  desc: 'Every trip is customized to your interests, fitness level, and budget. No two SafarWise tours are the same.' },
@@ -111,7 +106,6 @@ const WHY_US = [
 
 export default function ServicesPage() {
   const { navigate } = useApp();
-
   return (
     <div>
       <div className="page-header" style={{ position: 'relative' }}>
@@ -119,8 +113,6 @@ export default function ServicesPage() {
         <h1>Our <em>Services</em></h1>
         <p>Everything you need for the perfect Pakistan adventure expertly crafted and locally guided.</p>
       </div>
-
-      {/* FEATURE BADGES STRIP */}
       <section style={{ background: 'var(--earth)', padding: '2rem 0' }}>
         <div className="section-inner">
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem' }}>
@@ -136,8 +128,6 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-
-      {/* SERVICES GRID */}
       <section className="section">
         <div className="section-inner">
           <div className="section-header">
@@ -173,7 +163,6 @@ export default function ServicesPage() {
                       {s.title}
                     </h3>
                   </div>
-
                   <p style={{ fontSize: '0.875rem', color: 'var(--earth-light)', lineHeight: 1.75, marginBottom: '1.25rem' }}>
                     {s.desc}
                   </p>
@@ -198,7 +187,6 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-      {/* WHY CHOOSE US */}
       <section className="section" style={{ background: 'var(--sand)' }}>
         <div className="section-inner">
           <div className="section-header">
@@ -219,8 +207,6 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-
-      {/* CTA */}
       <section className="section">
         <div className="section-inner">
           <div className="promo-banner">

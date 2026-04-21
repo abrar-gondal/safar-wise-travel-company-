@@ -14,7 +14,6 @@ const protect = (req, res, next) => {
   }
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
     User.findById(decoded.id).then((user) => {
       if (!user) {
         return res.status(401).json({ success: false, message: 'User not found' });

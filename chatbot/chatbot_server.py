@@ -10,17 +10,14 @@ from flask_cors import CORS
 from model import ChatbotModel
 
 app = Flask(__name__)
-CORS(app)  # allows React frontend to call this
+CORS(app)  
 
 stemmer = PorterStemmer()
-
-# Load saved data
 words   = pickle.load(open('words.pkl', 'rb'))
 classes = pickle.load(open('classes.pkl', 'rb'))
 
 with open('intents.json', 'r') as f:
     intents = json.load(f)
-# Load model
 checkpoint  = torch.load('trained_model.pth', weights_only=True)
 model       = ChatbotModel(
     checkpoint['input_size'],

@@ -16,7 +16,6 @@ interface Booking {
   paymentStatus: string;
   user?: { name: string; email: string; phone: string };
 }
-
 export default function AdminPage() {
   const { user, navigate } = useApp();
   const [tab, setTab]         = useState<AdminTab>('bookings');
@@ -27,17 +26,14 @@ export default function AdminPage() {
   const [msg, setMsg]           = useState('');
   const [msgType, setMsgType]   = useState<'success' | 'error'>('success');
 
-  // Redirect non-admin
   useEffect(() => {
     if (!user) { navigate('login'); return; }
     if (user.role !== 'admin') { navigate('home'); return; }
   }, [user]);
-
   const showMsg = (text: string, type: 'success' | 'error' = 'success') => {
     setMsg(text); setMsgType(type);
     setTimeout(() => setMsg(''), 3500);
   };
-
   const fetchBookings = useCallback(async () => {
     setLoading(true);
     try {
@@ -56,12 +52,10 @@ export default function AdminPage() {
     fetchBookings();
   }, [fetchBookings]);
 
-  // Update booking status
   const handleStatus = async (id: string, status: string) => {
     setUpdatingId(id);
     try {
       await updateBookingStatus(id, status);
-      // Update locally immediately — no need to re-fetch
       setBookings(prev =>
         prev.map(b => b._id === id ? { ...b, bookingStatus: status } : b)
       );
@@ -72,17 +66,15 @@ export default function AdminPage() {
       setUpdatingId(null);
     }
   };
-
   if (!user || user.role !== 'admin') return null;
 
   const statusColor = (s: string) =>
     s === 'confirmed' ? '#27AE60'
     : s === 'cancelled' ? '#C0392B'
     : s === 'completed' ? '#2980B9'
-    : '#C8862A'; // pending
+    : '#C8862A';
 
   const filtered = filter === 'all' ? bookings : bookings.filter(b => b.bookingStatus === filter);
-
   const counts = {
     all:       bookings.length,
     pending:   bookings.filter(b => b.bookingStatus === 'pending').length,
@@ -90,11 +82,9 @@ export default function AdminPage() {
     cancelled: bookings.filter(b => b.bookingStatus === 'cancelled').length,
     completed: bookings.filter(b => b.bookingStatus === 'completed').length,
   };
-
   return (
     <div style={{ paddingTop: 68, minHeight: '100vh', background: 'var(--ivory)' }}>
 
-      {/* HEADER */}
       <div style={{ background: 'var(--earth)', padding: '2.5rem 2rem 2rem' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', color: 'white' }}>
           <div style={{ fontSize: '0.7rem', letterSpacing: '0.15em', color: 'var(--amber)', textTransform: 'uppercase', marginBottom: '0.4rem' }}>
@@ -108,7 +98,6 @@ export default function AdminPage() {
           </p>
         </div>
       </div>
-      {/* TABS */}
       <div style={{ background: 'white', borderBottom: '1px solid rgba(61,43,31,0.08)', padding: '0 2rem' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex' }}>
           {([
@@ -134,7 +123,6 @@ export default function AdminPage() {
         </div>
       </div>
       <div style={{ maxWidth: 1100, margin: '2rem auto', padding: '0 2rem 4rem' }}>
-        {/* GLOBAL MESSAGE */}
         {msg && (
           <div style={{
             background: msgType === 'success' ? 'rgba(39,174,96,0.1)' : 'rgba(192,57,43,0.1)',
@@ -148,7 +136,6 @@ export default function AdminPage() {
         )}
         {tab === 'bookings' && (
           <div>
-            {/* FILTER ROW */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '1rem' }}>
               <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
                 {(['all', 'pending', 'confirmed', 'cancelled', 'completed'] as StatusFilter[]).map(f => (
@@ -179,7 +166,6 @@ export default function AdminPage() {
                 {loading ? 'Loading...' : 'Refresh'}
               </button>
             </div>
-            {/* BOOKINGS LIST */}
             {loading ? (
               <div style={{ textAlign: 'center', padding: '3rem', color: 'var(--earth-light)' }}>
                 Loading bookings...
@@ -199,7 +185,6 @@ export default function AdminPage() {
                     transition: 'opacity 0.2s',
                   }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
-                      {/* BOOKING INFO */}
                       <div style={{ flex: 1, minWidth: 200 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem', flexWrap: 'wrap' }}>
                           <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '1.1rem', color: 'var(--earth)' }}>
@@ -234,7 +219,6 @@ export default function AdminPage() {
                           </div>
                         )}
                       </div>
-                      {/* ACTION BUTTONS */}
                       <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
                         {b.bookingStatus === 'pending' && (
                           <button
@@ -300,7 +284,6 @@ export default function AdminPage() {
                 </div>
               ))}
             </div>
-            {/* ADMIN GUIDE */}
             <div style={{ background: 'white', borderRadius: 14, padding: '1.5rem', boxShadow: '0 2px 16px var(--shadow)' }}>
               <h4 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '1.1rem', color: 'var(--earth)', marginBottom: '0.75rem' }}>
                 Admin Guide

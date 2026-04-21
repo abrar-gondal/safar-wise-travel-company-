@@ -54,7 +54,6 @@ export default function CityTourDetailPage() {
   }; 
   return (
     <div style={{ paddingTop: 68 }}>
-      {/* HERO */}
       <div style={{ position: 'relative', height: 420, overflow: 'hidden' }}>
         <img src={tour.image} alt={tour.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(30,16,8,0.9) 0%, rgba(30,16,8,0.3) 60%, transparent 100%)' }} />
@@ -74,13 +73,10 @@ export default function CityTourDetailPage() {
         </div>
       </div>
       <div style={{ maxWidth: 900, margin: '0 auto', padding: '3rem 2rem 5rem', display: 'grid', gridTemplateColumns: '1fr 280px', gap: '2.5rem', alignItems: 'start' }}>
-        {/* LEFT CONTENT */}
         <div>
-          {/* OVERVIEW */}
           <p style={{ fontSize: '1rem', color: 'var(--earth-light)', lineHeight: 1.85, marginBottom: '2.5rem', borderLeft: '3px solid var(--amber)', paddingLeft: '1.25rem', fontStyle: 'italic' }}>
             {tour.overview}
           </p>
-          {/* HIGHLIGHTS */}
           <div style={{ marginBottom: '2.5rem' }}>
             <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '1.6rem', color: 'var(--earth)', marginBottom: '1rem' }}>Tour Highlights</h2>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem' }}>
@@ -92,7 +88,6 @@ export default function CityTourDetailPage() {
               ))}
             </div>
           </div>
-          {/* ITINERARY */}
           <div style={{ marginBottom: '2.5rem' }}>
             <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '1.6rem', color: 'var(--earth)', marginBottom: '1.5rem' }}>Itinerary</h2>
             <div style={{ position: 'relative', paddingLeft: '1.5rem' }}>
@@ -107,7 +102,6 @@ export default function CityTourDetailPage() {
               ))}
             </div>
           </div>
-          {/* INCLUDES / EXCLUDES */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2rem' }}>
             <div style={{ background: 'rgba(39,174,96,0.05)', border: '1px solid rgba(39,174,96,0.15)', borderRadius: 12, padding: '1.25rem' }}>
               <h4 style={{ color: '#27AE60', fontSize: '0.9rem', fontWeight: 700, marginBottom: '0.75rem' }}>What is Included</h4>
@@ -128,7 +122,6 @@ export default function CityTourDetailPage() {
               ))}
             </div>
           </div>
-          {/* MEETING POINT */}
           <div style={{ background: 'var(--sand)', borderRadius: 12, padding: '1.25rem', display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" strokeWidth="1.5" style={{ flexShrink: 0, marginTop: 2 }}>
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
@@ -139,7 +132,6 @@ export default function CityTourDetailPage() {
             </div>
           </div>
         </div>
-        {/* RIGHT SIDEBAR */}
         <div style={{ position: 'sticky', top: 88 }}>
           <div style={{ background: 'white', borderRadius: 16, padding: '1.5rem', boxShadow: '0 4px 20px var(--shadow)', border: '1px solid rgba(200,134,42,0.1)' }}>
             <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '2rem', color: 'var(--earth)', marginBottom: '0.1rem' }}>
@@ -155,7 +147,6 @@ export default function CityTourDetailPage() {
                 <span style={{ color: 'var(--earth)', fontWeight: 500 }}>{v}</span>
               </div>
             ))}
-
             <div style={{ marginTop: '1.25rem', background: 'rgba(200,134,42,0.06)', border: '1px solid rgba(200,134,42,0.15)', borderRadius: 8, padding: '0.75rem', fontSize: '0.78rem', color: 'var(--earth-light)', lineHeight: 1.65, marginBottom: '1.25rem' }}>
               No payment required now. Fill your details and our team contacts you within 24 hours.
             </div>

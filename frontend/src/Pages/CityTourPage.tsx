@@ -60,7 +60,6 @@ export default function CityToursPage() {
         <h1>Lahore <em>City Tours</em></h1>
         <p>Discover the Mughal grandeur, vibrant food culture and rich heritage of Pakistan's cultural capital.</p>
       </div>
-      {/* LAHORE INTRO */}
       <section className="section" style={{ background: 'var(--sand)', paddingBottom: '2rem' }}>
         <div className="section-inner">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem', alignItems: 'center' }}>
@@ -91,7 +90,6 @@ export default function CityToursPage() {
           </div>
         </div>
       </section>
-      {/* TOURS GRID */}
       <section className="section">
         <div className="section-inner">
           <div className="section-header">
@@ -111,7 +109,6 @@ export default function CityToursPage() {
           </div>
         </div>
       </section>
-      {/* BOOKING MODAL */}
       {bookingTour && (
         <div
           style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}
@@ -175,7 +172,6 @@ export default function CityToursPage() {
           </div>
         </div>
       )}
-      {/* CTA */}
       <section className="section" style={{ background: 'var(--earth)' }}>
         <div className="section-inner" style={{ textAlign: 'center', maxWidth: 600 }}>
           <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '2rem', color: 'var(--sand)', marginBottom: '0.75rem' }}>

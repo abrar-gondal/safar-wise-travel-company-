@@ -2,23 +2,19 @@ const Booking  = require('../models/Booking');
 const User     = require('../models/User');
 const sendEmail = require('../utils/sendEmail');
 
-// ── POST /api/bookings ────────────────────────────────────────────────────────
 const createBooking = (req, res) => {
   const {
     packageName, destination, duration,
     travelDate, travelers, totalPrice,
     paymentMethod, specialRequests,
   } = req.body;
-
   if (!travelDate || !travelers) {
     return res.status(400).json({ success: false, message: 'Provide travelDate and travelers.' });
   }
-
   const bookingReference = 'SW-' + Math.floor(100000 + Math.random() * 900000);
   const numTravelers     = Number(travelers);
   const total            = Number(totalPrice) || 0;
 
-  // Find user first to get email for notification
   User.findById(req.user.id).then(foundUser => {
 
     return Booking.create({
@@ -38,7 +34,6 @@ const createBooking = (req, res) => {
       bookingStatus:   'pending',
       paymentStatus:   'pending',
     }).then(booking => {
-      // Send email notification (non-blocking)
       if (foundUser && foundUser.email) {
         const html = `
 <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
@@ -61,12 +56,12 @@ const createBooking = (req, res) => {
     <p style="color:#6B4C3B;">No payment needed now. We will call to confirm.</p>
     <p style="color:#3D2B1F;font-weight:bold;">Contact: +92 321 1234567</p>
     <hr style="border:none;border-top:1px solid #e0d5c5;margin:20px 0;">
-    <p style="color:#9B6620;font-size:12px;text-align:center;">SafarWise — Gulberg III, Lahore, Pakistan</p>
+    <p style="color:#9B6620;font-size:12px;text-align:center;">SafarWise , Lahore, Pakistan</p>
   </div>
 </div>`;
         sendEmail({
           to:      foundUser.email,
-          subject: `SafarWise — Booking: ${booking.packageName} (${bookingReference})`,
+          subject: `SafarWise - Booking: ${booking.packageName} (${bookingReference})`,
           html,
         }).catch(() => {});
       }
@@ -76,13 +71,10 @@ const createBooking = (req, res) => {
         booking,
       });
     });
-
   }).catch(err => {
     return res.status(500).json({ success: false, message: err.message });
   });
 };
-
-// ── GET /api/bookings/my ──────────────────────────────────────────────────────
 const getMyBookings = (req, res) => {
   Booking.find({ user: req.user.id })
     .sort({ createdAt: -1 })
@@ -93,8 +85,6 @@ const getMyBookings = (req, res) => {
       return res.status(500).json({ success: false, message: err.message });
     });
 };
-
-// ── GET /api/bookings/all (admin) ─────────────────────────────────────────────
 const getAllBookings = (req, res) => {
   Booking.find()
     .sort({ createdAt: -1 })
@@ -106,8 +96,6 @@ const getAllBookings = (req, res) => {
       return res.status(500).json({ success: false, message: err.message });
     });
 };
-
-// ── PUT /api/bookings/:id/status (admin) ──────────────────────────────────────
 const updateBookingStatus = (req, res) => {
   const { bookingStatus } = req.body;
   const allowed = ['pending', 'confirmed', 'cancelled', 'completed'];
@@ -124,8 +112,6 @@ const updateBookingStatus = (req, res) => {
       return res.status(500).json({ success: false, message: err.message });
     });
 };
-
-// ── PUT /api/bookings/:id/cancel (user) ───────────────────────────────────────
 const cancelBooking = (req, res) => {
   Booking.findOne({ _id: req.params.id, user: req.user.id })
     .then(booking => {

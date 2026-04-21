@@ -13,7 +13,6 @@ const QUICK_REPLIES = [
   'Fairy Meadows',
   'Contact info',
 ];
-// Call AI chatbot server on port 5001
 const getBotResponse = async (msg: string): Promise<string> => {
   try {
     const res = await fetch('http://localhost:5001/chat', {
@@ -47,24 +46,19 @@ export default function ChatbotPanel({ onClose, full = false }: ChatbotPanelProp
   const [showQuick, setShowQuick] = useState(true);
   const [isTyping, setIsTyping]   = useState(false);
   const messagesRef = useRef<HTMLDivElement>(null);
-
   const send = async (text?: string) => {
     const msg = (text || input).trim();
     if (!msg) return;
     const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    // Add user message
     const userMsg: Message = { id: Date.now(), text: msg, sender: 'user', time };
     setMessages(m => [...m, userMsg]);
     setInput('');
     setShowQuick(false);
     setIsTyping(true);
-    // Add typing indicator
     const typingId = Date.now() + 1;
     setMessages(m => [...m, { id: typingId, text: '...', sender: 'bot', time }]);
-    // Get AI response
     const response = await getBotResponse(msg);
     setIsTyping(false);
-    // Replace typing indicator with real response
     setMessages(m => m.map(item =>
       item.id === typingId
         ? { ...item, text: response, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }
@@ -84,7 +78,6 @@ export default function ChatbotPanel({ onClose, full = false }: ChatbotPanelProp
   );
   const panel = (
     <>
-      {/* HEADER */}
       <div className="chatbot-header">
         <div style={{
           width: 38, height: 38, borderRadius: '50%', background: 'var(--amber)',
@@ -108,7 +101,6 @@ export default function ChatbotPanel({ onClose, full = false }: ChatbotPanelProp
           </button>
         )}
       </div>
-      {/* MESSAGES */}
       <div className="chatbot-messages" ref={messagesRef}>
         {messages.map(m => (
           <div key={m.id} className={`chat-msg ${m.sender}`}>
@@ -125,7 +117,6 @@ export default function ChatbotPanel({ onClose, full = false }: ChatbotPanelProp
             <div className="chat-time">{m.time}</div>
           </div>
         ))}
-        {/* QUICK REPLIES — show only at the start before first message */}
         {showQuick && (
           <div style={{ padding: '0.5rem 0.75rem 0.5rem', display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
             {QUICK_REPLIES.map(q => (
@@ -152,7 +143,6 @@ export default function ChatbotPanel({ onClose, full = false }: ChatbotPanelProp
           </div>
         )}
       </div>
-      {/* INPUT */}
       <div className="chatbot-input">
         <input
           value={input}

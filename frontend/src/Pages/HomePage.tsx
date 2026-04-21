@@ -18,13 +18,11 @@ const SERVICES_PREVIEW = [
   { icon: <WavesIcon />,    title: 'Coastal Escapes', desc: 'Gwadar, Makran Highway and the Arabian Sea coastline.' },
   { icon: <SafariIcon />,   title: 'Wildlife Safari', desc: 'Snow Leopards, Markhor and rare birds across Pakistan.' },
 ];
-
 export default function HomePage() {
   const { navigate, setSelectedPkg, user, favorites, toggleFav } = useApp();
   const featured = PACKAGES.filter(p => p.featured);
   return (
     <div>
-      {/* HERO */}
       <section className="hero">
         <div className="hero-bg" />
         <div className="hero-content">
@@ -60,7 +58,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      {/* SERVICES PREVIEW shown right after hero */}
       <section className="section" style={{ background: 'var(--sand)' }}>
         <div className="section-inner">
           <div className="section-header">
@@ -110,7 +107,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      {/* FEATURED PACKAGES */}
       <section className="section" style={{ background: 'var(--ivory)' }}>
         <div className="section-inner">
           <div className="section-header">
@@ -137,7 +133,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      {/* CITY TOURS PREVIEW */}
       <section className="section" style={{ background: 'var(--sand)' }}>
         <div className="section-inner">
           <div className="section-header">
@@ -192,7 +187,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      {/* PROMO */}
       <section className="section">
         <div className="section-inner">
           <div className="promo-banner">
@@ -210,7 +204,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      {/* TESTIMONIALS */}
       <section className="section" style={{ background: 'var(--sand)', paddingTop: '3rem' }}>
         <div className="section-inner">
           <div className="section-header">
