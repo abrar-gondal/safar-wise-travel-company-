@@ -23,7 +23,7 @@ const cityTours = [
   {
     name: 'Walled City Heritage Walk',
     duration: '1 Day', price: 2500,
-    image: 'https://images.unsplash.com/photo-1697543739174-eb47c4c4bef5?w=800',
+    image: 'https://source.unsplash.com/800x500/?lahore,mosque,mughal',
     desc: 'Walk through the historic Walled City of Lahore, exploring Delhi Gate, Shahi Hammam, Wazir Khan Mosque and the bustling bazaars.',
     highlights: ['Delhi Gate', 'Wazir Khan Mosque', 'Shahi Hammam', 'Gali Surjan Singh', 'Badshahi Mosque', 'Minar-e-Pakistan'],
     difficulty: 'Easy', groupSize: 'Up to 15 people',
@@ -46,7 +46,7 @@ const cityTours = [
   {
     name: 'Mughal Monuments Tour',
     duration: '1 Day', price: 3500,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800',
+    image: 'https://source.unsplash.com/800x500/?lahore,fort,architecture',
     desc: 'Visit the greatest Mughal monuments in Lahore Badshahi Mosque, Lahore Fort, Sheesh Mahal and Shalimar Gardens.',
     highlights: ['Lahore Fort Sheesh Mahal', 'Badshahi Mosque', 'Shalimar Gardens', 'Wazir Khan Mosque', 'Ranjit Singh Samadhi'],
     difficulty: 'Easy', groupSize: 'Up to 20 people',
@@ -66,7 +66,7 @@ const cityTours = [
   {
     name: 'Lahore Food Street Experience',
     duration: 'Evening', price: 1800,
-    image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800',
+    image: 'https://source.unsplash.com/800x500/?food,street,pakistan',
     desc: 'Experience the legendary Lahori food culture Fort Road Food Street, Gawalmandi, Lahori Paye, Nihari and the famous Lassi.',
     highlights: ['Fort Road Food Street', 'Lahori Paye and Nihari', 'Gawalmandi Dhabas', 'Traditional Lassi', 'Lahori Karahi'],
     difficulty: 'Easy', groupSize: 'Up to 12 people',
@@ -86,7 +86,7 @@ const cityTours = [
   {
     name: 'Shalimar Gardens and Museums',
     duration: '1 Day', price: 2800,
-    image: 'https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=800',
+    image: 'https://source.unsplash.com/800x500/?garden,mughal,india',
     desc: 'Explore the UNESCO-listed Shalimar Gardens and the Lahore Museum housing one of South Asia\'s finest collections.',
     highlights: ['Lahore Museum Fasting Buddha', 'Fakir Khana Museum', 'Shalimar Gardens', 'Gulabi Bagh Gateway'],
     difficulty: 'Easy', groupSize: 'Up to 20 people',
@@ -106,7 +106,7 @@ const cityTours = [
   {
     name: 'Wagah Border Ceremony',
     duration: 'Half Day', price: 1500,
-    image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800',
+    image: 'https://source.unsplash.com/800x500/?border,flag,ceremony',
     desc: 'Witness the spectacular Wagah Border flag-lowering ceremony at the Pakistan-India border unlike anything else in the world.',
     highlights: ['Flag-lowering Ceremony', 'Pakistan Rangers Drill', 'Border Crossing View', 'Patriotic Atmosphere'],
     difficulty: 'Easy', groupSize: 'Up to 30 people',
@@ -125,7 +125,7 @@ const cityTours = [
   {
     name: 'Complete Lahore City Tour',
     duration: '2 Days', price: 8500,
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800',
+    image: 'https://source.unsplash.com/800x500/?lahore,city,night',
     desc: 'The complete Lahore experience all major monuments, food streets, museums, Shalimar Gardens and Wagah Border over two full days.',
     highlights: ['Lahore Fort', 'Badshahi Mosque', 'Walled City Walk', 'Shalimar Gardens', 'Wagah Border', 'Food Street Dinners'],
     difficulty: 'Easy', groupSize: 'Up to 15 people',

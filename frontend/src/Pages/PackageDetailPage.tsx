@@ -49,7 +49,6 @@ export default function PackageDetailPage() {
     if (!formDate)  { setError('Please select your preferred travel date.'); return; }
     setLoading(true);
     try {
-      // Send to /api/bookings so it appears in user profile and admin panel
       await createBooking({
         packageName:     pkg.name,
         destination:     pkg.destination,

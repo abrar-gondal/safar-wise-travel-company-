@@ -164,7 +164,7 @@ export default function AboutPage() {
               {/* University Badge */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'var(--sand)', borderRadius: 12, padding: '1rem 1.25rem', marginBottom: '1.5rem', border: '1px solid rgba(200,134,42,0.15)' }}>
                 <img
-                  src="https://superior.edu.pk/wp-content/uploads/2021/05/superior-university-logo.png"
+                  src="cdn.brandfetch.io/idaM6PZcRV/w/200/h/200/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1747750909538"
                   alt="Superior University"
                   style={{ height: 52, objectFit: 'contain' }}
                   onError={e => {

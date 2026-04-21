@@ -3,6 +3,7 @@ import BackButton from '../components/BackButton';
 import CityTourCard from '../components/CityTourCard';
 import { useApp } from '../AppContext';
 import { CITY_TOURS } from '../data/cityTours';
+import { createBooking, sendContact } from '../api';
 
 export default function CityToursPage() {
   const { navigate, setSelectedCityTour } = useApp() as any;
@@ -30,18 +31,24 @@ export default function CityToursPage() {
     if (!name || !phone || !date) { setError('Please fill all required fields.'); return; }
     setLoading(true);
     try {
-      await fetch('http://localhost:5000/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name, email: 'inquiry@safarwise.com', phone,
+        await createBooking({
+          packageName:     `City Tour: ${bookingTour?.name}`,
+          destination:     'Lahore, Punjab',
+          duration:        bookingTour?.duration || '',
+          travelDate:      date,
+          travelers:       Number(travelers),
+          totalPrice:      (bookingTour?.price || 0) * Number(travelers),
+          paymentMethod:   'inquiry',
+          specialRequests: `Name: ${name} | Phone: ${phone} | City Tour Inquiry`,
+        });
+        await sendContact({
+          name, email: 'safarwise32@gmail.com', phone,
           subject: `City Tour Inquiry: ${bookingTour?.name}`,
           message: `Tour: ${bookingTour?.name}\nDate: ${date}\nTravelers: ${travelers}\nPhone: ${phone}`,
-        }),
-      });
-      setSent(true);
-    } catch {
-      setSent(true);
+        });
+        setSent(true);
+    } catch   
+    (err: any) { setError(err.response?.data?.message || 'An error occurred. Please try again.');
     } finally {
       setLoading(false);
     }

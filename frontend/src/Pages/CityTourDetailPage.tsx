@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useApp } from '../AppContext';
 import BackButton from '../components/BackButton';
 import type { CityTour } from '../types';
+import { createBooking, sendContact } from '../api';
 
 const USD_RATE = 279;
 export default function CityTourDetailPage() {
@@ -27,22 +28,30 @@ export default function CityTourDetailPage() {
     if (!name || !phone || !date) { setError('Please fill all required fields.'); return; }
     setLoading(true);
     try {
-      await fetch('http://localhost:5000/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+        await createBooking({
+          packageName:     `City Tour: ${tour.name}`,
+          destination:     'Lahore, Punjab',
+          duration:        tour.duration || '',
+          travelDate:      date,
+          travelers:       Number(travelers),
+          totalPrice:      (tour.price || 0) * Number(travelers),
+          paymentMethod:   'inquiry',
+          specialRequests: `Name: ${name} | Phone: ${phone} | City Tour`,
+        });
+        await sendContact({
           name, email: 'safarwise32@gmail.com', phone,
           subject: `City Tour Inquiry: ${tour.name}`,
           message: `Tour: ${tour.name}\nDate: ${date}\nTravelers: ${travelers}\nPhone: ${phone}`,
-        }),
-      });
-      setSent(true);
-    } catch {
-      setSent(true);
+        });
+        setSent(true);
+    } catch 
+    (err: any) {
+      setError(err.response?.data?.message || 'An error occurred. Please try again.');
+      setLoading(false);
     } finally {
       setLoading(false);
     }
-  };
+  }; 
   return (
     <div style={{ paddingTop: 68 }}>
       {/* HERO */}
