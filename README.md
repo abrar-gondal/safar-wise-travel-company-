@@ -128,9 +128,9 @@ python chatbot_server.py
 ## 🌐 Deployment
 
 * Frontend → Vercel
-* Backend → Render
+* Backend → Railway
 * Database → MongoDB Atlas
-* Chatbot → Python service (can be deployed separately)
+* Chatbot → Hugging Face
 
 ---
 
